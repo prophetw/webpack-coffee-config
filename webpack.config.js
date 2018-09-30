@@ -1,11 +1,16 @@
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 module.exports={
   "mode": "development",
-  "entry": path.resolve(__dirname,'src/index.coffee'),
+  "entry": {
+    app: path.resolve(__dirname,'src/index.coffee'),
+    print: path.resolve(__dirname,'src/print.coffee'),
+  },
   "output": {
     "path": path.resolve(__dirname,'dist'),
-    "filename": "main.js"
+    "filename": "[name].bundle.js"
   },
   "devtool": "source-map",
   "module": {
@@ -55,5 +60,9 @@ module.exports={
       },
     ]
   },
-  "plugins": [new MiniCssExtractPlugin({filename: "[name]-[contenthash:8].css"})]
+  "plugins": [
+    new CleanWebpackPlugin(['dist']),
+    new MiniCssExtractPlugin({filename: "[name]-[contenthash:8].css"}),
+    new HtmlWebpackPlugin({title: 'Output Management'})
+  ]
 };
