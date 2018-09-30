@@ -19,7 +19,7 @@
 ## 0.1.3
 ##### https://webpack.docschina.org/guides/development
 * webpack "devtool": "source-map" 
-* https://webpack.docschina.org/configuration/devtool
+* 配置项 https://webpack.docschina.org/configuration/devtool
 ### 关于开发两种模式
 #### 1.单独服务器 
 * npm start 
@@ -27,6 +27,11 @@
 * 现在，服务器正在运行，你可能需要尝试模块热替换(Hot Module Replacement)！
 #### 2.直接基于 dist/index.html
 * npm watch  监听文件变化，重新生成 dist 文件
+
+## 0.1.4 
+### 模块热替换
+##### https://webpack.docschina.org/guides/hot-module-replacement
+* coffeescript import export 写法
 
 
 

@@ -1,22 +1,30 @@
+const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-module.exports={
-  "mode": "development",
-  "entry": {
-    app: path.resolve(__dirname,'src/index.coffee'),
-    print: path.resolve(__dirname,'src/print.coffee'),
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+module.exports = {
+  entry: {
+    index: path.resolve(__dirname,'src/index.coffee'),
+    polyfills: './src/polyfills.coffee',
   },
-  "output": {
-    "path": path.resolve(__dirname,'dist'),
-    "filename": "[name].bundle.js",
-    publicPath: '/'
+  optimization: {
+    runtimeChunk: 'single',
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+           test: /[\\/]node_modules[\\/]/,
+           name: 'vendors',
+           chunks: 'all'
+        }
+      }
+    }
   },
   "devServer": {
-     contentBase: './dist'
+    contentBase: './dist',
+    hot:true
   },
-  "devtool": "inline-source-map",
   "module": {
     "rules": [
       {
@@ -39,10 +47,10 @@ module.exports={
         ]
       },
       {
-         "test": /\.(png|svg|jpg|gif)$/,
-         "use": [
-           'file-loader'
-         ]
+        "test": /\.(png|svg|jpg|gif)$/,
+        "use": [
+          'file-loader'
+        ]
       },
       {
         "test": /\.(woff|woff2|eot|ttf|otf)$/,
@@ -67,6 +75,7 @@ module.exports={
   "plugins": [
     new CleanWebpackPlugin(['dist']),
     new MiniCssExtractPlugin({filename: "[name]-[contenthash:8].css"}),
-    new HtmlWebpackPlugin({title: 'Output Management'})
+    new HtmlWebpackPlugin({title: 'Cool Man'}),
+    new webpack.HashedModuleIdsPlugin(),
   ]
 };
