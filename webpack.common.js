@@ -6,8 +6,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    index: path.resolve(__dirname,'src/index.coffee'),
     polyfills: './src/polyfills.coffee',
+    index: path.resolve(__dirname,'src/index.coffee'),
   },
   optimization: {
     runtimeChunk: 'single',
@@ -36,7 +36,7 @@ module.exports = {
         "enforce": "pre",
         "test": /\.(js|jsx)$/,
         "exclude": /node_modules/,
-        // "use": "eslint-loader"
+        "use": "babel-loader"
       },
       {
         "test": /\.scss$/,
@@ -44,6 +44,22 @@ module.exports = {
           "style-loader",
           "css-loader",
           "sass-loader"
+        ]
+      },
+      {
+        test: /\.(html)$/,
+        use: {
+          loader: 'html-loader',
+          options: {
+            attrs: [':data-src']
+          }
+        }
+      },
+      {
+        "test": /\.css$/,
+        "use": [
+          "style-loader",
+          "css-loader"
         ]
       },
       {
@@ -74,8 +90,12 @@ module.exports = {
   },
   "plugins": [
     new CleanWebpackPlugin(['dist']),
+    // new webpack.ProvidePlugin({angular: 'angular'}),
     new MiniCssExtractPlugin({filename: "[name]-[contenthash:8].css"}),
-    new HtmlWebpackPlugin({title: 'Cool Man'}),
+    new HtmlWebpackPlugin({
+      title: 'Cool Man',
+      template: 'index.html'
+    }),
     new webpack.HashedModuleIdsPlugin(),
   ]
 };
