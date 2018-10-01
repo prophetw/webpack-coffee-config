@@ -1,0 +1,22 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{ 'rename' }}</h4>
+</div>
+<style>
+    #file-name::-ms-clear {
+        display:none;
+    }
+
+</style>
+<div class="modal-body">
+    <form>
+        <div class="form-group">
+            <label for="file-name">{{'rename_file' }}: </label>
+            <!-- CBASE-100-->
+
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-right-aside" type="button" ng-disabled="newName.length==0" ng-click="ok()" >{{'ok' }}</button>
+    <button class="btn btn-default" type="button" ng-click="cancel()">{{'cancel' }}</button>
+</div>

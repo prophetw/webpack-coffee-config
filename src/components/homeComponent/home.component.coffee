@@ -1,14 +1,14 @@
 
 import angular from 'angular'
 import template from './home.html'
-import controller from './home.controller.coffee'
+import HomeCtrl from './home.controller.coffee'
 import './home.scss'
 
 # <home >
 component={
   bindings:{}
   template
-  controller
+  controller:HomeCtrl
 }
 
 export default component
