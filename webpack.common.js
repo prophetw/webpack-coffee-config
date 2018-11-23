@@ -94,7 +94,7 @@ module.exports = {
     new MiniCssExtractPlugin({filename: "[name]-[contenthash:8].css"}),
     new HtmlWebpackPlugin({
       title: 'Cool Man',
-      template: 'index.html'
+      template: 'src/index.html'
     }),
     new webpack.HashedModuleIdsPlugin(),
   ]
