@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CmisService } from "./services/cmis.service";
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'angular-cmis';
+  title = 'angular-cmis-it is cool';
+  name = 'JIM';
+  constructor(public cmisService:CmisService){
+
+  }
 }
