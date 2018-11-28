@@ -1,4 +1,7 @@
-export class Document {
-  id: number;
-  name: string;
+import { CmisObj } from './cmis-obj'
+
+
+export class Document extends CmisObj{
+
+
 }

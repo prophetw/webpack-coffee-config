@@ -11,7 +11,7 @@ import { ShareInfo } from '../models/share-info'
 })
 export class ShareService {
 
-  shareInfo : ShareInfo[];
+  shareInfo : ShareInfo;
   constructor(
     private apiService:ApiService
   ) { }

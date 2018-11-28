@@ -25,13 +25,15 @@ export class AppComponent implements OnInit{
   }
 
   ngOnInit(){
-    console.log('==== this.shareInfo$ ')
-    console.log(this.shareInfo$)
+    // console.log('==== this.shareInfo$ ')
+    // console.log(this.shareInfo$)
     this.shareService.getShareInfo().subscribe({
       next:(data)=> {
-        console.log('====shareInfo');
-        console.log(data);
+        // console.log('====shareInfo');
+        // console.log(data);
         this.shareInfo$=data;
+        // console.log(this.shareInfo$)
+        // console.log(typeof this.shareInfo$)
       }
     })
   }
