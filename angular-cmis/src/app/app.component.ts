@@ -1,5 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
+
 import { CmisService } from "./services/cmis.service";
+import { ApiService } from "./services/api.service";
+import { ShareService } from "./services/share.service";
+import { ShareInfo } from "./models/share-info";
 
 
 @Component({
@@ -7,10 +12,27 @@ import { CmisService } from "./services/cmis.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'angular-cmis-it is cool';
   name = 'JIM';
-  constructor(public cmisService:CmisService){
+  shareInfo$ : ShareInfo;
+  constructor(
+    public cmisService:CmisService,
+    public shareService:ShareService,
+    public apiService:ApiService,
+  ){
 
+  }
+
+  ngOnInit(){
+    console.log('==== this.shareInfo$ ')
+    console.log(this.shareInfo$)
+    this.shareService.getShareInfo().subscribe({
+      next:(data)=> {
+        console.log('====shareInfo');
+        console.log(data);
+        this.shareInfo$=data;
+      }
+    })
   }
 }
