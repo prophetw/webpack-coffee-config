@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CmisComponent } from './cmis.component';
+import { DocumentHeaderComponent } from './document-header.component';
 
-describe('CmisComponent', () => {
-  let component: CmisComponent;
-  let fixture: ComponentFixture<CmisComponent>;
+describe('DocumentHeaderComponent', () => {
+  let component: DocumentHeaderComponent;
+  let fixture: ComponentFixture<DocumentHeaderComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CmisComponent ]
+      declarations: [ DocumentHeaderComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CmisComponent);
+    fixture = TestBed.createComponent(DocumentHeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

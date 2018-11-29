@@ -1,7 +1,6 @@
-<p>
-  document-list works!
-</p>
-
-<ul>
-  <li *ngFor="let document of documentList"></li>
+<app-document-header></app-document-header>
+<ul *ngIf="rootFolder">
+  <li *ngFor="let document of rootFolder.children" (click)="openFolder(document)">
+    <p>{{ document.name }}</p>
+  </li>
 </ul>

@@ -6,22 +6,25 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes/heroes.component';
-import { CmisComponent } from './cmis/cmis.component';
 import { DocumentListComponent } from './document-list/document-list.component';
+import {CmisService} from "./services/cmis.service";
+import { DocumentHeaderComponent } from './document-header/document-header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeroesComponent,
-    CmisComponent,
-    DocumentListComponent
+    DocumentListComponent,
+    DocumentHeaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    { provide: 'CmisService', useExisting: CmisService}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

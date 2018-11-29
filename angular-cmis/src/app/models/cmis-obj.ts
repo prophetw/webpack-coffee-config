@@ -1,3 +1,8 @@
+import { Injector } from '@angular/core'
+
+import {CmisService} from "../services/cmis.service";
+
+
 export interface CmisObj {
   allowableActions:{
     canAddObjectToFolder: boolean;
@@ -48,11 +53,17 @@ export interface CmisObj {
   };
 }
 export class CmisObj {
-  id:string;
-  cmisAcl:string[];
+  public cmisService: CmisService;
+  id: string;
+  name: string;
+  acl: any;
+
   cDrmAcl:string[];
   constructor(obj){
     this.id=obj&&obj['succinctProperties']&&obj['succinctProperties']['cmis:objectId'];
+    this.name=obj&&obj['succinctProperties']&&obj['succinctProperties']['cmis:name'];
+
+    this.acl=obj&&obj['acl'];
     this.succinctProperties=obj&&obj['succinctProperties'];
     this.allowableActions=obj&&obj['allowableActions'];
   }
