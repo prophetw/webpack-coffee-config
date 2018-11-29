@@ -1,10 +1,11 @@
-import { Injector } from '@angular/core'
+import { Injector } from '@angular/core';
+import { CmisService } from '../services/cmis.service';
 
-import {CmisService} from "../services/cmis.service";
+
 
 
 export interface CmisObj {
-  allowableActions:{
+  allowableActions: {
     canAddObjectToFolder: boolean;
     canApplyACL: boolean;
     canApplyPolicy: boolean;
@@ -36,35 +37,24 @@ export interface CmisObj {
     canSetContentStream: boolean;
     canUpdateProperties: boolean;
   };
-  succinctProperties:{
-    "cmis:allowedChildObjectTypeIds": string;
-    "cmis:baseTypeId": string;
-    "cmis:changeToken": string;
-    "cmis:createdBy": string;
-    "cmis:creationDate": number;
-    "cmis:description": string;
-    "cmis:lastModificationDate": number;
-    "cmis:lastModifiedBy": string;
-    "cmis:name": string;
-    "cmis:objectId": string;
-    "cmis:objectTypeId": string;
-    "cmis:parentId": string;
-    "cmis:path": string;
-  };
+  succinctProperties: any;
 }
 export class CmisObj {
-  public cmisService: CmisService;
   id: string;
   name: string;
   acl: any;
+  cmisService: CmisService;
+  cDrmAcl: any;
+  constructor(
+    obj: any,
+    cmisService: CmisService
+    ) {
+      this.cmisService = cmisService;
+      this.id = obj && obj['succinctProperties'] && obj['succinctProperties']['cmis:objectId'];
+      this.name = obj && obj['succinctProperties'] && obj['succinctProperties']['cmis:name'];
 
-  cDrmAcl:string[];
-  constructor(obj){
-    this.id=obj&&obj['succinctProperties']&&obj['succinctProperties']['cmis:objectId'];
-    this.name=obj&&obj['succinctProperties']&&obj['succinctProperties']['cmis:name'];
-
-    this.acl=obj&&obj['acl'];
-    this.succinctProperties=obj&&obj['succinctProperties'];
-    this.allowableActions=obj&&obj['allowableActions'];
+      this.acl = obj && obj['acl'];
+      this.succinctProperties = obj && obj['succinctProperties'];
+      this.allowableActions = obj && obj['allowableActions'];
   }
 }
