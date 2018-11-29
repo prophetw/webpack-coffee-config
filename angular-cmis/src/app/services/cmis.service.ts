@@ -44,14 +44,14 @@ export class CmisService {
       // })
   }
 
-  getRootFolder(): Observable<Folder>{
+  getRootFolder(){
     return from(this.cmisSession.getObjectByPath('/User_Homes/ad/mi/admin@gmail.com/Reading',{includeAllowableActions:true,succinct:true}))
       .pipe(
         map(data => data)
       )
   }
 
-  getChildren(document):Observable<CmisObj[]>{
+  getChildren(document){
     return from(this.cmisSession.getChildren(document.id,{includeAllowableActions:true,succinct:true,includeAcl:true}))
       .pipe(
         map(data => data)

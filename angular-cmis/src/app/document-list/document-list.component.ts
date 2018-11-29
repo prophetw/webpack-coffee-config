@@ -12,7 +12,7 @@ import {Folder} from "../models/folder";
   styleUrls: ['./document-list.component.scss']
 })
 export class DocumentListComponent implements OnInit {
-  rootFolder: Folder;
+  rootFolder: any;
   constructor(
     private cmisService:CmisService,
   ) { }
@@ -25,8 +25,8 @@ export class DocumentListComponent implements OnInit {
   getRootFolder(){
     this.cmisService.getRootFolder().subscribe({
       next:(result)=>{
-        console.log('==== getRootFolder')
-        this.rootFolder=result;
+        console.log('==== getRootFolder');
+        this.rootFolder=new Folder(result);
 
         console.log(this.rootFolder);
         console.log(typeof this.rootFolder);

@@ -1,4 +1,4 @@
-export class CmisObj {
+export interface CmisObj {
   allowableActions:{
     canAddObjectToFolder: boolean;
     canApplyACL: boolean;
@@ -46,4 +46,14 @@ export class CmisObj {
     "cmis:parentId": string;
     "cmis:path": string;
   };
+}
+export class CmisObj {
+  id:string;
+  cmisAcl:string[];
+  cDrmAcl:string[];
+  constructor(obj){
+    this.id=obj&&obj['succinctProperties']&&obj['succinctProperties']['cmis:objectId'];
+    this.succinctProperties=obj&&obj['succinctProperties'];
+    this.allowableActions=obj&&obj['allowableActions'];
+  }
 }
