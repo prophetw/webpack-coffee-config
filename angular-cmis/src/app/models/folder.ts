@@ -2,6 +2,9 @@ import { CmisObj } from './cmis-obj';
 import { Document } from './document';
 import { CmisService } from '../services/cmis.service';
 
+interface FolderInterface {
+  hello: string;
+}
 
 export class Folder extends CmisObj {
   children: any = [];
